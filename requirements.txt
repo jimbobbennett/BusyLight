@@ -1,0 +1,3 @@
+unicornhat
+azure-iot-device
+python-dotenv
