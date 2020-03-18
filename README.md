@@ -298,7 +298,7 @@ Once you have this Id, you can create the connector
 
 1. Enter in the Application ID you noted down earlier
 
-1. Drop down the *Device Template* and select `Busy Light (1.0.0
+1. Drop down the *Device Template* and select `Busy Light (1.0.0)`
 
 1. Enter your device id in the *Device* box
 
