@@ -6,11 +6,11 @@ Like a lot of folks at the moment, I'm working for home and my child is off scho
 
 One of the upsides of working from home, especially when my 7 year old is off school is that I am available most of the time for the occasional quick cuddle, to laugh at something silly she'd just done or help her with something. One of the downsides is that at any time she could walk in to my office whilst I'm on a call.
 
-![Image from BBC news of a child walking in to an office during an on-air interview](./Images/kid-crashing-interview.jpg)
+![Image from BBC news of a child walking in to an office during an on-air interview](./images/kid-crashing-interview.jpg)
 
 What I need is a on-air style light, to let her know when I'm in meetings and when I'm not. Luckily I'm an IoT nut so I not only have the skills to build such a thing, but I have all the parts just lying around begging me to use them! So I built one!
 
-![The busy light changing from green to red to off at the press of a button](./Images/BusyLight.gif)
+![The busy light changing from green to red to off at the press of a button](./images/BusyLight.gif)
 
 ## What I needed it to do
 
