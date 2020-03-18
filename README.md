@@ -1,8 +1,8 @@
 # Let your family know you are in meetings with an IoT Busy light
 
-Like a lot of folks at the moment, I'm working for home and my child is off school. 
+Like a lot of folks at the moment, I'm working for home and my child is off school.
 
-> For those reading this in the future and wondering why, I am currently living in the time of the Coronavirus pandemic and worldwide toilet paper shortages.
+> For those reading this in the future and wondering why, I am currently living in the time of the COVID-19 pandemic and worldwide toilet paper shortages.
 
 One of the upsides of working from home, especially when my 7 year old is off school is that I am available most of the time for the occasional quick cuddle, to laugh at something silly she'd just done or help her with something. One of the downsides is that at any time she could walk in to my office whilst I'm on a call.
 
@@ -14,25 +14,19 @@ What I need is a on-air style light, to let her know when I'm in meetings and wh
 
 ## What I needed it to do
 
-This light needs to live outside my office so my family can see it before they come in, but I don't want to have to get up and walk out the door to turn it on or off. This gave me two options:
+This light needs to live outside my office so my family can see it before they come in, but I don't want to have to get up and walk out the door to turn it on or off. I want to have it controlled automatically by my calendar, so it shows red when I have a meeting and green when I'm free.
 
-* Have it controlled automatically by my calendar - this is a great way to have it automatically turn on, but not always the best. Sometimes I have impromptu chats that would need the light on that are not in my calendar, or meetings that finish early (yay!) where I'd need it off early.
-
-* Have it controlled remotely by something like a mobile app or Flic button - this is probably preferable as I can flip the light on for impromptu calls, turn it off when meetings end early. It does mean some training to ensure I remember, but shouldn't be too hard. Having had my wife in the past walk up to me and give me a kiss on the cheek when she got home not realising I was on a call, I'm pretty cautious now!
-
-Having control on my desk and the light outside means I have the problem of connectivity - how can a device control my light remotely. For that the answer was obvious - [Azure IoT Central](https://azure.microsoft.com/services/iot-central/?WT.mc_id=busylight-github-jabenn)! The glorious IoT SaaS platform from Microsoft.  It has such a low barrier to entry I knew I'd be able to get something up and running quickly.
+This leads to the problem of connectivity - how can my calendar control my light remotely. For that the answer was obvious - a mixture of [Azure IoT Central](https://azure.microsoft.com/services/iot-central/?WT.mc_id=busylight-github-jabenn), the glorious IoT SaaS platform from Microsoft, and [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/?WT.mc_id=busylight-github-jabenn), a no-code tool for building apps.  Both have such a low barrier to entry I knew I'd be able to get something up and running quickly.
 
 ## Hardware
 
 > All the Amazon links below are affiliate links. Any money I make from these links will be donated to support families affected by COVID-19. If you don't want to use these links then search for the items directly on Amazon or buy from your local maker store or direct from the manufacturers.
 
-Every good maker project starts with hardware. I needed a device I could program, some lights, something to put it in and something to control it remotely. After digging around in my supply of bits I put together the following:
+Every good maker project starts with hardware. I needed a device I could program, some lights and something to put it in. After digging around in my supply of bits I put together the following:
 
 * [Pimoroni Mood Light](https://amzn.to/2TMqckO) - this is a nice little kit that contains a Raspberry Pi Zero W, a Pimoroni unicorn pHAT with 55 programmable LEDs in a rectangle, some laser cut plastic to make a case that looks like a light, and various cables and headers.
 
 * [16GB SD Card](https://amzn.to/38L5VAk) - the mood light doesn't come with an SD Card, so you'll need one to run the code from.
-
-* [Flic button](https://amzn.to/3aRYlpe) - this is a fun button that connects via either a Flic Hub or your phone to interact with services or make web requests depending on if the button is clicked, double clicked or held for a few seconds.
 
 The Pimoroni mood light is a great all-in-one package for a light, but any Raspberry Pi would work as long as it has internet connectivity. If you want to get the Pi parts separately and make your own enclosure, then you will need:
 
@@ -54,21 +48,11 @@ If you are new to soldering, some great videos to help you are from EEVblog:
 
 You can also use a different Pi such as the new [Raspberry Pi 4](https://amzn.to/2xziEt7), and these have the headers already on the board. There are also many different light options you could use, so work with whatever you have, but you'll have to work out the code to use them yourself.
 
-## Software
-
-The software that powers this has 3 parts:
-
-* Something in the cloud to talk to the device
-* Something that runs on the device
-* Something that the Flic button can talk to to control the device
-
-Lets start with the cloud.
-
-### Something in the cloud to talk to the device
+## Configure IoT Central
 
 My favorite IoT cloud service is [Azure IoT Central](https://azure.microsoft.com/services/iot-central/?WT.mc_id=busylight-github-jabenn). This is a software as a service (SaaS) platform that allows devices to send data to and be controlled from the cloud. I can use this to send commands to the device to change the color of the light. I can also use to cache the current color so that if the device resets, it can retain it's previous color setting.
 
-#### Set up the IoT Central app
+### Set up the IoT Central app
 
 1. Head to [aka.ms/BusyLightTemplate](https://aka.ms/BusyLightTemplate). This link is to a pre-configured application template that you can use to create the IoT Central application
 
@@ -92,7 +76,7 @@ My favorite IoT cloud service is [Azure IoT Central](https://azure.microsoft.com
 
 The IoT Central app will be provisioned and the dashboard will be loaded.
 
-#### Create a device
+### Create a device
 
 The app that is created contains everything you need to get going - except a configured device. From this app you can configure one or more devices and control these.
 
@@ -112,11 +96,11 @@ The app that is created contains everything you need to get going - except a con
 
 Repeat this for as many devices as you want to control.
 
-### Something that runs on the device
+## Program the Pi
 
 The device will be running some Python code that can control the Unicorn pHAT as well as talk to IoT Central.
 
-#### Set up the Pi
+### Set up the Pi
 
 The Pi needs to be running Raspbian Lite
 
@@ -156,7 +140,7 @@ The Pi needs to be running Raspbian Lite
 
     The default password is `raspberry`.
 
-#### Install the light controller software
+### Install the light controller software
 
 The light controller software is in this repo in the [`app.py`](./app.py) file. This contains code to talk to IoT Central to receive commands to change the light color, then set this color on the Unicorn pHAT. For this script to connect to IoT central some environment variables need to be configured in a file.
 
@@ -178,7 +162,7 @@ The light controller software is in this repo in the [`app.py`](./app.py) file. 
 >
 > You will need to remove all references to the `unicornhat` module and the calls to set it up. Then update the `set_color` function to use your preferred lights. This function is passed the color as an RGB HEX string, the first 2 characters are the hex value to set for the red channel, second two are the hex value for the green channel and last two the hex values for the blue channel.
 
-#### Test the light
+### Test the light
 
 The light is now ready to be controlled from IoT Central.
 
@@ -190,7 +174,7 @@ The light is now ready to be controlled from IoT Central.
 
     ![The device dashboard](./images/Dashboard.png)
 
-1. Enter a value for the *Colour** using a 6-character HEX string for RGB values. For example, for red enter `FF000`, green is `00FF00`, blue is `0000FF`, white is `FFFFFF` and off is `000000`
+1. Enter a value for the **Colour** using a 6-character HEX string for RGB values. For example, for red enter `FF000`, green is `00FF00`, blue is `0000FF`, white is `FFFFFF` and off is `000000`
 
 1. Select **Run**
 
@@ -198,5 +182,151 @@ The light should change to match the color specific. Try with a few different co
 
 If you return to the dashboard, you will see the value of the **Colour** cell updated to show the value sent to the light. This value is read by the app every time it restarts to ensure that the light keeps its color between restarts.
 
-### Something that the Flic button can talk to to control the device
+## Connect my calendar to control the device
 
+Finally my light needs to be controlled. I want it to turn red automatically when a meeting starts, then turn green when it ends. This can be done using Azure Logic Apps.
+
+Azure logic apps are not free, but are *VERY* cheap for small numbers of runs. For example at the time of writing, a single run on a logic app is $0.000025 per action, so to poll for meetings every 10 minutes each day might cost $0.50 a month.
+
+> In this I cover using Logic Apps to connect to my Office 365 calendar, but you can use these to control IoT Central triggered by a number of different things such as:
+>
+> * A web request - this can then be called by a device such as a Flic button
+> * A timer to turn the light on and off based of a normal work day
+> * Azure dev ops - turn the light red when a work item is assigned
+
+### Create the logic app
+
+1. Open the Azure Portal at [portal.azure.com](https://portal.azure.com/?WT.mc_id=busylight-github-jabenn)
+
+1. Log in if you need to using your Microsoft account. If you don't have an Azure account follow the [instructions above](https://github.com/jimbobbennett/BusyLight/tree/master#set-up-the-iot-central-app) to create one.
+
+1. Select **+ Create a resource**
+
+1. Search for `Logic App`, select it then select **Create**
+
+1. Select your Azure subscription
+
+1. For the *Resource group* select **Create new** and name the new resource group **BusyLight**
+
+    > Resource groups are logical groupings of Azure services, allowing you to manage all the services for a particular application or project together.
+
+1. Name the logic app `CalendarControl`
+
+1. Select the *location* closest to you
+
+1. Select **Review + create**, then **Create**
+
+The logic app will be created, and when it is ready select **Go to resource**
+
+### Program the logic app
+
+Logic apps are no-code apps where you can connect triggers to actions, and these can connect to external services such as Office365 and IoT Central. I want mine connected to my Office365 calendar to poll for upcoming events, and if it finds any schedule calls to IoT Central to execute the **Update Colour** command.
+
+#### Create a trigger
+
+1. When you first open the Logic App it will take you to the designer. From the *Templates* section, select **Blank logic app**
+
+1. Search the connectors and triggers for `office 365 outlook` and select the **Office 365 Outlook** connector
+
+1. Select the **When an upcoming event is starting soon** trigger
+
+1. The designer will show the new trigger. Select **Sign In** and sign in with your Office 365 account.
+
+1. Select your calendar in the *Calendar Id* drop down
+
+    > If you have multiple calendars to check, you will need to create multiple Logic Apps.
+
+1. Leave the look ahead time at 15 minutes
+
+1. Set an appropriate interval to poll for new items. Depending on how far in advance meetings can added to your calendar you can choose a suitable interval, as you pay for each poll. I use 10 minutes as I don't get meetings appearing in my calendar with less notice than that.
+
+    > This value needs to be less than the look ahead time otherwise events might be missed
+
+#### Wait till the event starts
+
+The trigger is fired when it sees an upcoming event, so the app needs to delay till the event actually starts before changing the light to red. Logic app triggers and actions can pass data between them, so the Office 365 connector can pass the start and end times to the next action in the app.
+
+There is a small snag however - date and time formats are hard! The date format passed from the Office connector is not quite right for the one expected by the delay actions, so needs to be adjusted.
+
+1. Select **+ New step**
+
+1. Search for `Schedule` and select **Schedule**
+
+1. Select the **Delay until** action
+
+1. Select the *Timestamp* value and a box should pop up allowing you to build an expression
+
+1. Select the **Expression** tab, then select **Concat**
+
+    ![Adding concat to the expression](./images/BuildExpression1.png)
+
+1. Select the **Dynamic content** tab and select **Start time**. If you can't see this, select **See more** from the top of the list.
+
+1. Select the expression, and add `, 'Z'` before the last bracket. The select **OK**.
+
+    ![Adding Z to the expression](./images/BuildExpression2.png)
+
+#### Execute the IoT Central command to change the light color
+
+The delay will hold till the meeting is about to start, so the next step is to connect to IoT Central to execute the command. To do this, you will need the IoT Central application Id and device Id.
+
+1. Open your IoT Central app
+
+1. Select **Administration** from the left-hand menu
+
+1. Select **Your application** from the *Administration* menu
+
+1. Take a note of the *Application ID*
+
+1. Select **Devices** from the left-hand menu
+
+1. Take a note of the *Device Id* of your device
+
+Once you have this Id, you can create the connector
+
+1. Head back to your logic app
+
+1. Select **+ New step**
+
+1. Search for `Azure IoT Central`, then select **Azure IoT Central**
+
+1. Select the **Run a command** action
+
+1. Once the action appears, select **Sign in** and log in with your Azure account if required
+
+1. Drop down the *Application* box and select **Enter custom value**
+
+1. Enter in the Application ID you noted down earlier
+
+1. Drop down the *Device Template* and select `Busy Light (1.0.0
+
+1. Enter your device id in the *Device* box
+
+1. Drop down the *Command* and select `Update Colour`
+
+1. Drop down *Add a new parameter* and check the box next to **Colour**
+
+1. Set the value of *Colour* to be the colour you want when you are in a meeting, using a 6 character RGB hex string. For example, for red enter `FF0000`
+
+#### Handle the event ending
+
+Repeat the two steps above to add another Delay Until and Run a Command action to the app. The second delay should use the *End time* instead of the *Start time*, and for the colour use the colour you want when you are not in a meeting, such as `00FF00` for green.
+
+#### Save the logic app
+
+1. Select **Save** from the Logic App designer menu to save the Logic App and enable it
+
+#### Test the logic app
+
+Add an upcoming event to your calendar - far enough away that the poll will be run once. Your light will turn red when the event starts and green when it finishes.
+
+## Next steps
+
+I also added a [Flic button](https://amzn.to/3aRYlpe) to control the light, in case of impromptu meetings or if a meeting ends early (Yay!). To do this I set up three Logic Apps with HTTP triggers and actions calls the IoT Central command passing different colors - red, green and off (000000). I then connected these to the Flic button, so one click for red, two for green and hold to turn the light off.
+
+## Learn more
+
+If you want to learn more about Azure IoT and AI services, the best place to start is Microsoft Learn - our free on-line, self guided hands on learning experience.
+
+* [IoT Learning Paths on Microsoft Learn](https://docs.microsoft.com/learn/browse/?term=IOT&WT.mc_id=busylight-github-jabenn)
+* [Logic app learning paths on Microsoft Learn](https://docs.microsoft.com/learn/browse/?term=logic%20apps&WT.mc_id=busylight-github-jabenn)
