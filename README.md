@@ -140,6 +140,14 @@ The Pi needs to be running Raspbian Lite
 
     The default password is `raspberry`.
 
+1. Change the password from the default using the following command:
+
+    ```sh
+    passwd
+    ```
+
+    Enter the current password, then a new password, then confirm the new password.
+
 ### Install the light controller software
 
 The light controller software is in this repo in the [`app.py`](./app.py) file. This contains code to talk to IoT Central to receive commands to change the light color, then set this color on the Unicorn pHAT. For this script to connect to IoT central some environment variables need to be configured in a file.
