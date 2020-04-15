@@ -62,7 +62,7 @@ async def main():
     try:
         desired_colour = twin['reported']['colour']
         set_colour(desired_colour)
-    except Error:
+    except Exception as ex:
         print("Couldn't load twin,")
 
     # listen for commands
