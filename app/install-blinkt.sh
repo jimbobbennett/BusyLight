@@ -4,9 +4,9 @@
 sudo apt-get update
 sudo apt-get -y upgrade
 
-# Install the Unicorn pHAT stuff
+# Install the blinkt stuff
 promptreboot="no"
-curl https://get.pimoroni.com/unicornhat  | bash -s -- -y
+curl https://get.pimoroni.com/blinkt  | bash -s -- -y
 
 # Create a folder for the app
 mkdir ~/BusyLight
@@ -29,8 +29,8 @@ echo "PRIMARY_KEY=$primary_key" >> ~/BusyLight/.env
 # DOwnload the app files
 echo Downloading files...
 
-curl -L -o ~/BusyLight/requirements.txt https://github.com/jimbobbennett/BusyLight/releases/download/v0.1/requirements.txt
-curl -L -o ~/BusyLight/app.py https://github.com/jimbobbennett/BusyLight/releases/download/v0.1/app.py
+curl -L -o ~/BusyLight/requirements.txt https://github.com/jimbobbennett/BusyLight/releases/download/v0.2/requirements-blinkt.txt
+curl -L -o ~/BusyLight/app.py https://github.com/jimbobbennett/BusyLight/releases/download/v0.2/app-blinkt.py
 
 # Install the Python requirements
 echo Installing requirements...
