@@ -1,0 +1,3 @@
+blinkt
+azure-iot-device
+python-dotenv

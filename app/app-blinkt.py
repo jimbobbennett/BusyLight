@@ -1,5 +1,5 @@
-import unicornhat as uh
-import os, asyncio, threading, random, time
+import blinkt
+import os, asyncio
 from dotenv import load_dotenv
 from azure.iot.device.aio import IoTHubDeviceClient, ProvisioningDeviceClient
 from azure.iot.device import MethodResponse
@@ -10,8 +10,7 @@ id_scope = os.getenv('ID_SCOPE')
 device_id = os.getenv('DEVICE_ID')
 primary_key = os.getenv('PRIMARY_KEY')
 
-uh.set_layout(uh.PHAT)
-uh.brightness(1)
+blinkt.set_brightness(1)
 
 def set_colour(colour):
     r = '0x' + colour[0:2]
@@ -24,8 +23,8 @@ def set_colour(colour):
 
     print('Updating color: r =', r_value, ', g =', g_value, ', b =', b_value)
 
-    uh.set_all(r_value, g_value, b_value)
-    uh.show()
+    blinkt.set_all(r_value, g_value, b_value)
+    blinkt.show()
 
 async def main():
     # provision the device
