@@ -14,11 +14,11 @@ I've made different versions of the code available for these lighting options. T
 
 [![The mood light](https://cdn.shopify.com/s/files/1/0174/1800/products/zero-w-kits-square-2_284x284.jpg?v=1488325554)](https://amzn.to/2TMqckO)
 
-My first version of this project used the [Pimoroni Mood Light](https://amzn.to/2TMqckO), something I had lying around after being given one by a friend. This is a nice little kit that contains a Raspberry Pi Zero W, a Pimoroni unicorn pHAT with 55 programmable LEDs in a rectangle, some laser cut plastic to make a case that looks like a light, and various cables and headers. It has everything you need to create this project, save for an [SD Card](https://amzn.to/38L5VAk). Mood light doesn't come with an SD Card, so you'll need one to run the code from.
+My first version of this project used the [Pimoroni Mood Light](https://amzn.to/2TMqckO), something I had lying around after being given one by a friend. This is a nice little kit that contains a Raspberry Pi Zero W, a Pimoroni unicorn pHAT with 55 programmable LEDs in a rectangle, some laser cut plastic to make a case that looks like a light, and various cables and headers. It has everything you need to create this project, save for an [SD Card](https://amzn.to/38L5VAk). You'll need one to run the code from.
 
 One of the downsides to a kit like this is it involves the bane of my existence - a soldering iron...
 
-The Pi Zero doesn't come with headers pre-soldered unless you are lucky enough to track down one that does. The Unicorn pHAT also needs to be soldered. If you don't have a soldering iron, nows the time to buy one and learn. Be warned, the headers are small and fiddly, so you may also need a magnifier to help you.
+The Pi Zero doesn't come with headers pre-soldered. The Unicorn pHAT also has headers that need to be soldered. If you don't have a soldering iron, nows the time to buy one and learn. Be warned, the headers are small and fiddly, so you may also need a magnifier to help you.
 
 If you are new to soldering, some great videos to help you are from EEVblog:
 

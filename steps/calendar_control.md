@@ -6,7 +6,7 @@ The lights can be controlled from your Office365 calendar using an Azure Logic A
 
 1. Open the Azure Portal at [portal.azure.com](https://portal.azure.com/?WT.mc_id=busylight-github-jabenn)
 
-1. Log in if you need to using your Microsoft account. If you don't have an Azure account follow the [instructions above](https://github.com/jimbobbennett/BusyLight/tree/master#set-up-the-iot-central-app) to create one.
+1. Log in if you need to using your Microsoft account. If you don't have an Azure account follow the [instructions above](https://github.com/jimbobbennett/BusyLight/blob/master/steps/configure-iot-central.md#set-up-the-iot-central-app) to create one.
 
 1. Select **+ Create a resource**
 
