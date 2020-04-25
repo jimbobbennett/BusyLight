@@ -38,14 +38,12 @@ echo Installing requirements...
 sudo pip3 install -r ~/BusyLight/requirements.txt
 
 # Add the control to the crontab
-
 sudo crontab -l > cron.tmp
-echo @reboot /usr/bin/python3 /home/pi/BusyLight/app.py >> cron.tmp
+echo @reboot sleep 60 && /usr/bin/python3 /home/pi/BusyLight/app.py >> cron.tmp
 sudo crontab cron.tmp
 rm cron.tmp
 
 # Done, so reboot
-
 echo Rebooting...
 
 sudo reboot
