@@ -24,7 +24,7 @@ To set this up yourself, you need to set up some hardware, configure Azure IoT C
 
 1. [Set up the hardware](./steps/set-up-hardware.md)
 2. [Configure Azure IoT Central](./steps/configure-iot-central.md)
-3. [Install the software on the Pi](install-pi-software.md)
+3. [Install the software on the Pi](./steps/install-pi-software.md)
 4. [Connect an Azure Logic app to control the lights](./steps/connect-logic-app.md)
 
 ## Learn more
