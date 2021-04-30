@@ -1,5 +1,8 @@
 # Let your family know you are in meetings with an IoT Busy light
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](/LICENSE)
+[![Twitter: jimbobbennett](https://img.shields.io/twitter/follow/jimbobbennett.svg?style=social)](https://twitter.com/jimbobbennett)
+
 Like a lot of folks at the moment, I'm working for home and my child is off school.
 
 > For those reading this in the future and wondering why, I am currently living in the time of the COVID-19 pandemic and worldwide toilet paper shortages.
