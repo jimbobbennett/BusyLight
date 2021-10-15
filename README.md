@@ -19,7 +19,7 @@ What I need is a on-air style light, to let her know when I'm in meetings and wh
 
 This light needs to live outside my office so my family can see it before they come in, but I don't want to have to get up and walk out the door to turn it on or off. I want to have it controlled automatically by my calendar, so it shows red when I have a meeting and green when I'm free.
 
-This leads to the problem of connectivity - how can my calendar control my light remotely. For that the answer was obvious - a mixture of [Azure IoT Central](https://azure.microsoft.com/services/iot-central/?WT.mc_id=busylight-github-jabenn), the glorious IoT SaaS platform from Microsoft, and [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/?WT.mc_id=busylight-github-jabenn), a no-code tool for building apps.  Both have such a low barrier to entry I knew I'd be able to get something up and running quickly.
+This leads to the problem of connectivity - how can my calendar control my light remotely. For that the answer was obvious - a mixture of [Azure IoT Central](https://azure.microsoft.com/services/iot-central/?WT.mc_id=academic-0000-jabenn), the glorious IoT SaaS platform from Microsoft, and [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/?WT.mc_id=academic-0000-jabenn), a no-code tool for building apps.  Both have such a low barrier to entry I knew I'd be able to get something up and running quickly.
 
 ## Steps
 
@@ -34,5 +34,5 @@ To set this up yourself, you need to set up some hardware, configure Azure IoT C
 
 If you want to learn more about Azure IoT and AI services, the best place to start is Microsoft Learn - our free on-line, self guided hands on learning experience.
 
-* [IoT Learning Paths on Microsoft Learn](https://docs.microsoft.com/learn/browse/?term=IOT&WT.mc_id=busylight-github-jabenn)
-* [Logic app learning paths on Microsoft Learn](https://docs.microsoft.com/learn/browse/?term=logic%20apps&WT.mc_id=busylight-github-jabenn)
+* [IoT Learning Paths on Microsoft Learn](https://docs.microsoft.com/learn/browse/?term=IOT&WT.mc_id=academic-0000-jabenn)
+* [Logic app learning paths on Microsoft Learn](https://docs.microsoft.com/learn/browse/?term=logic apps&WT.mc_id=academic-0000-jabenn)
